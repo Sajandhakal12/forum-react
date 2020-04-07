@@ -20,8 +20,7 @@ const CreateCategory = () => {
       'http://localhost:5000/api/category/create',
       data
     );
-    console.log(response.result);
-    // history.push('/category/' + _id);
+    history.push('/category/' + data.id);
   };
 
   return (
