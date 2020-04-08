@@ -32,7 +32,7 @@ export default function ShowForum() {
       <ul>
         {threads.map((thread, index) => (
           <li key={index}>
-            <button onClick={() => history.push(`/thread/${thread._id}`)} />
+            {/* <button onClick={() => history.push(`/thread/${thread._id}`)} /> */}
             {thread.title} and {thread.createdAt} />
           </li>
         ))}

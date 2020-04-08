@@ -1,8 +1,7 @@
 const router = require("express").Router();
+const { createForum } = require("../../controllers/forum/ForumController");
 
-router.post("/create", (req, res) => {
-  res.send("create");
-});
+router.post("/create", createForum);
 router.get("/:id", (req, res) => {
   res.send("create");
 });

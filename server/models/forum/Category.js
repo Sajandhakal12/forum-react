@@ -41,4 +41,17 @@ Category.find = function (result) {
     }
   });
 };
+
+Category.createForum = function (newForum, result) {
+  let query = "INSERT INTO  ?? SET ?";
+  let table = ["forum"];
+  query = mysql.format(query, table);
+  connection.query(query, newForum, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
 module.exports = Category;

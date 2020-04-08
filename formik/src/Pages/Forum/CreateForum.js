@@ -19,7 +19,8 @@ const CreateForum = () => {
     await axios
       .post('http://localhost:5000/api/forum/create', data)
       .then((response) => {
-        const { id } = response.data;
+        console.log(response.data.result);
+        const id = response.data.result;
         history.push('/forum/' + id);
       });
   };
