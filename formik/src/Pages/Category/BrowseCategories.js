@@ -4,18 +4,25 @@ import axios from 'axios';
 
 export default function BrowseCategories() {
   const [categories, setCategories] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     getCategories();
   }, []);
-  const getCategories = () => {
-    const response = axios.get('http://localhost:5000/api/category');
-    setCategories(response.data);
+  const getCategories = async () => {
+    const response = await axios.get('http://localhost:5000/api/category');
+    const data = response.data.result;
+
+    // setCategories(data);
+    // console.log(categories);
   };
-  const history = useHistory();
 
   return (
     <div>
       <h1>Browse Categories</h1>
+      {/* <ul>
+        {categories &&
+          categories.map((catagory, index) => <li key={index}>{catagory}</li>)}
+      </ul> */}
       <button onClick={() => history.push('/category/create')}>
         Create Category
       </button>

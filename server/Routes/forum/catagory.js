@@ -2,12 +2,10 @@ const router = require("express").Router();
 const {
   createCategory,
   getCatByID,
+  getCats,
 } = require("../../controllers/forum/CategoryController");
 
 router.post("/create", createCategory);
 router.get("/:id", getCatByID);
-router.get("/", (req, res) => {
-  res.send("create");
-});
-
+router.get("/", getCats);
 module.exports = router;

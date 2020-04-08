@@ -36,3 +36,18 @@ exports.getCatByID = (req, res) => {
     }
   });
 };
+
+exports.getCats = (req, res) => {
+  Category.find((err, result) => {
+    if (err) {
+      res
+        .status(200)
+        .json({ Error: true, Message: "Error executing MySQL query" });
+    } else {
+      res.status(201).json({
+        message: "Sucess",
+        result: result,
+      });
+    }
+  });
+};

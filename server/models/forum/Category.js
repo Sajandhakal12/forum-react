@@ -28,4 +28,17 @@ Category.findId = function (id, result) {
     }
   });
 };
+
+Category.find = function (result) {
+  let query = "select * from ??";
+  let table = ["category"];
+  query = mysql.format(query, table);
+  connection.query(query, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
 module.exports = Category;

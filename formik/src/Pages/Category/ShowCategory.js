@@ -33,7 +33,7 @@ export default function ShowCategories() {
     <div style={{ padding: '2rem' }}>
       {category && <h1>{category.title}</h1>}
 
-      <button onClick={() => history.push('/forum/create/' + 1)}>
+      <button onClick={() => history.push('/forum/create/' + id)}>
         Create Forum
       </button>
 
