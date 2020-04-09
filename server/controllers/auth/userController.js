@@ -82,28 +82,29 @@ exports.login_user = (req, res) => {
   User.findUser(user, async (err, result) => {
     if (err) {
       res
-        .status(201)
+        .status(500)
         .json({ Error: true, Message: "Error executing MySQL query" });
     } else {
       if (result.length == 1) {
-        let validPass = await bcrypt.compare(user.password, result[0].password);
+        bcrypt.compare(user.password, result[0].password, (err, validPass) => {
+          if (err) {
+            res.status(401).json({
+              error: true,
+              message: "wrong email/password combination",
+            });
+          } else {
+            let token = jwt.sign(
+              { email: result[0].email },
+              process.env.JWT_key,
+              {
+                expiresIn: 100,
+              }
+            );
+            res.header("token", token);
+            res.status(200).json({ user, token });
+          }
+        });
         console.log("it is valid:", validPass);
-        if (validPass) {
-          // console.log("from login", result[0].email);
-          let token = jwt.sign(
-            { email: result[0].email },
-            process.env.JWT_key,
-            {
-              expiresIn: 100,
-            }
-          );
-          res.header("token", token);
-          res.status(200).json({ user, token });
-        } else {
-          res
-            .status(404)
-            .json({ Error: true, Message: "wrong email/password combination" });
-        }
       } else {
         res
           .status(404)
