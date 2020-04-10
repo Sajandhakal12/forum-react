@@ -1,9 +1,9 @@
 let Category = require("../../models/forum/Category");
 exports.createForum = (req, res) => {
   //   console.log("from createForum", res.body);
-  const { title, categoryId } = req.body;
+  const { id, title, categoryId } = req.body;
   const newForum = {
-    id: Date.now(),
+    id,
     title,
     createdAt: Date.now(),
     categoryId,
@@ -21,4 +21,8 @@ exports.createForum = (req, res) => {
       });
     }
   });
+};
+
+exports.showForums = (req, res) => {
+  let id = req.params.id;
 };

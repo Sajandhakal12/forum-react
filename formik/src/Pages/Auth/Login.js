@@ -48,6 +48,7 @@ export default function Login() {
               setUser(user);
               setMessage('sucess');
               isSubmitting = false;
+              console.log('from login', token);
               history.push('/');
             })
             .catch((error) => {

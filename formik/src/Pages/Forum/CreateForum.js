@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { create_UUID } from '../../Component/uuid';
 
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
@@ -12,6 +13,7 @@ const CreateForum = () => {
     event.preventDefault();
 
     const data = {
+      id: create_UUID(),
       title,
       categoryId: id,
     };

@@ -13,30 +13,35 @@ export default function ShowForum() {
   }, []);
 
   const getForum = async () => {
-    const response = await axios.get('/api/forum/' + id);
+    const response = await axios.get('http://localhost:5000/api/forum/' + id);
     setForum(response.data);
+    console.log('this is from getForum ', response.data);
+    console.log(forum);
   };
 
   const getThreads = async () => {
-    const response = await axios.get('/api/thread/forum/' + id);
+    const response = await axios.get(
+      'http://localhost:5000/api/thread/forum/' + id
+    );
     setThreads(response.data);
+    console.log(response.data);
   };
 
   return (
     <div style={{ padding: '2rem' }}>
-      {forum && <h1>{forum.title}</h1>}
-
+      {forum && <h1>{forum}</h1>}
       <button onClick={() => history.push('/thread/create/' + id)}>
         Create Thread
       </button>
-      <ul>
+      {/* <ul>
         {threads.map((thread, index) => (
           <li key={index}>
+            {thread}
             {/* <button onClick={() => history.push(`/thread/${thread._id}`)} /> */}
-            {thread.title} and {thread.createdAt} />
-          </li>
+      {/* {thread.title} and {thread.createdAt} /> */}
+      {/* </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

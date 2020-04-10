@@ -19,6 +19,7 @@ export default function ShowCategories() {
     const response = await axios.get(
       'http://localhost:5000/api/category/' + id
     );
+    console.log(response.data);
     setCategory(response.data);
   };
 

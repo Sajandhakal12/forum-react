@@ -84,8 +84,8 @@ function App() {
                     <Route path="/category/:id">
                       <ShowCategory />
                     </Route>
-                    <Route path="/category">
-                      <BrowseCategories />
+                    <Route path="/category" component={BrowseCategories}>
+                      {/* <BrowseCategories /> */}
                     </Route>
                     <Route path="/forum/create/:id">
                       {user ? <CreateForum /> : <Redirect to="/login" />}
