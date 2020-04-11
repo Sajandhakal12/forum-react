@@ -1,10 +1,13 @@
 const router = require("express").Router();
 
-router.post("/create", (req, res) => {
-  res.send("create");
-});
-router.get("/forum/:id", (req, res) => {
-  res.send("create");
-});
+const {
+  createThread,
+  showThread,
+  showThreadById,
+} = require("../../controllers/forum/ThreadController");
+
+router.post("/create", createThread);
+router.get("/forum/:id", showThread);
+router.get("/:id", showThreadById);
 
 module.exports = router;

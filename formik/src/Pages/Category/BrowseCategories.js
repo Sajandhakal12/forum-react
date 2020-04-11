@@ -28,10 +28,10 @@ export default function BrowseCategories() {
             <li key={index} className="list-group mb-1">
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={() => history.push('/category/' + category.id)}
               >
-                {category.title} <span class="badge badge-light">2</span>
+                {category.title} <span className="badge badge-light">2</span>
               </button>
             </li>
           ))}

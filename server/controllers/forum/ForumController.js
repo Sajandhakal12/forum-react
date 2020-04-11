@@ -26,7 +26,23 @@ exports.createForum = (req, res) => {
 exports.showForums = (req, res) => {
   let id = req.params.id;
   console.log("from show forums", id);
-  Category.showForums(id, (err, result) => {
+  Category.showForum(id, (err, result) => {
+    if (err) {
+      res
+        .status(200)
+        .json({ error: true, message: "Error executing MySQL query" });
+    } else {
+      res.status(201).json({
+        message: "Sucess",
+        result: result,
+      });
+    }
+  });
+};
+
+exports.showForumById = (req, res) => {
+  let id = req.params.id;
+  Category.showForumById(id, (err, result) => {
     if (err) {
       res
         .status(200)

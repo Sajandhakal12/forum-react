@@ -20,7 +20,7 @@ export default function ShowCategories() {
       'http://localhost:5000/api/category/' + id
     );
     console.log('from get categories', response.data.result);
-    setCategory(response.data.result);
+    setCategory(response.data.result[0].title);
   };
 
   const getFora = async () => {
@@ -33,18 +33,18 @@ export default function ShowCategories() {
 
   return (
     <div style={{ padding: '2rem' }}>
-      {category && <h1>{category.title}lala</h1>}
+      {category && <h1>{category}</h1>}
 
       <ul>
         {fora &&
           fora.map((forum, index) => (
-            <li className="list-group mb-1">
+            <li key={index} className="list-group mb-1">
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={() => history.push(`/forum/${forum.id}`)}
               >
                 {forum.title}
-                <span class="badge badge-light">2</span>
+                <span className="badge badge-light">2</span>
               </button>
 
               {/* <ListItemText primary={forum.title} secondary={forum.createdAt} /> */}

@@ -1,12 +1,9 @@
 const router = require("express").Router();
+const {
+  createPost,
+  findPost,
+} = require("../../controllers/forum/PostController");
 
-router.post("/create", (req, res) => {
-  res.send("create");
-});
-router.get("/:id", (req, res) => {
-  res.send("create");
-});
-router.get("/forum/:id", (req, res) => {
-  res.send("create");
-});
+router.post("/create", createPost);
+router.get("/thread/:id", findPost);
 module.exports = router;

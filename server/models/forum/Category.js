@@ -55,9 +55,86 @@ Category.createForum = function (newForum, result) {
   });
 };
 
-Category.showForums = function (id, result) {
+Category.showForum = function (id, result) {
   let query = "SELECT * FROM ?? where ??=?";
   let table = ["forum", "categoryid"];
+  query = mysql.format(query, table);
+  connection.query(query, id, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Category.showForumById = function (id, result) {
+  let query = "SELECT * FROM ?? WHERE ??=?";
+  let table = ["forum", "id"];
+  query = mysql.format(query, table);
+  connection.query(query, id, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Category.createThread = function (newThread, result) {
+  let query = "INSERT INTO  ?? SET ?";
+  let table = ["thread"];
+  query = mysql.format(query, table);
+  connection.query(query, newThread, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Category.showThread = function (id, result) {
+  let query = "SELECT * FROM ?? WHERE ?? =?";
+  let table = ["thread", "forumId"];
+  query = mysql.format(query, table);
+  connection.query(query, id, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
+Category.showThreadById = function (id, result) {
+  let query = "SELECT * FROM ?? WHERE ?? =?";
+  let table = ["thread", "id"];
+  query = mysql.format(query, table);
+  connection.query(query, id, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
+Category.createPost = function (newPost, result) {
+  let query = "INSERT INTO  ?? SET ?";
+  let table = ["post"];
+  query = mysql.format(query, table);
+  connection.query(query, newPost, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Category.findPost = function (id, result) {
+  console.log("from find post", id);
+  let query = "SELECT * FROM ?? WHERE ?? =?";
+  let table = ["post", "threadId"];
   query = mysql.format(query, table);
   connection.query(query, id, function (err, res) {
     if (err) {
