@@ -54,4 +54,17 @@ Category.createForum = function (newForum, result) {
     }
   });
 };
+
+Category.showForums = function (id, result) {
+  let query = "SELECT * FROM ?? where ??=?";
+  let table = ["forum", "categoryid"];
+  query = mysql.format(query, table);
+  connection.query(query, id, function (err, res) {
+    if (err) {
+      result(err, res);
+    } else {
+      result(null, res);
+    }
+  });
+};
 module.exports = Category;

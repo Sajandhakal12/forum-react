@@ -25,11 +25,14 @@ export default function BrowseCategories() {
       <ul>
         {categories &&
           categories.map((category, index) => (
-            <li
-              key={index}
-              onClick={() => history.push('/category/' + category.id)}
-            >
-              {category.title}
+            <li key={index} className="list-group mb-1">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onClick={() => history.push('/category/' + category.id)}
+              >
+                {category.title} <span class="badge badge-light">2</span>
+              </button>
             </li>
           ))}
       </ul>

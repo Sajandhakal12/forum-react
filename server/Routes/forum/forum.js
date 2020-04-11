@@ -1,12 +1,13 @@
 const router = require("express").Router();
-const { createForum } = require("../../controllers/forum/ForumController");
+const {
+  createForum,
+  showForums,
+} = require("../../controllers/forum/ForumController");
 
 router.post("/create", createForum);
 router.get("/:id", (req, res) => {
-  res.send("create");
+  res.send("/:id");
 });
-router.post("/category/:id", (req, res) => {
-  res.send("create");
-});
+router.get("/category/:id", showForums);
 
 module.exports = router;

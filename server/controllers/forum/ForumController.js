@@ -13,7 +13,7 @@ exports.createForum = (req, res) => {
     if (err) {
       res
         .status(200)
-        .json({ Error: true, Message: "Error executing MySQL query" });
+        .json({ error: true, Message: "Error executing MySQL query" });
     } else {
       res.status(201).json({
         message: "New forum added",
@@ -25,4 +25,17 @@ exports.createForum = (req, res) => {
 
 exports.showForums = (req, res) => {
   let id = req.params.id;
+  console.log("from show forums", id);
+  Category.showForums(id, (err, result) => {
+    if (err) {
+      res
+        .status(200)
+        .json({ error: true, message: "Error executing MySQL query" });
+    } else {
+      res.status(201).json({
+        message: "Sucess",
+        result: result,
+      });
+    }
+  });
 };
