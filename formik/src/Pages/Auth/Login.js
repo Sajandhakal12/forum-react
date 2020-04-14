@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Axios from 'axios';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { log_validationSchema } from '../../Component/validation';
 
 export default function Login() {
   const history = useHistory();
   const [message, setMessage] = useState(null);
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
 
-  const token = localStorage.getItem('token');
+  //const token = localStorage.getItem('token');
 
   return (
     <div>
@@ -43,9 +43,9 @@ export default function Login() {
           Axios.post('http://localhost:5000/api/user/login', data)
             .then((response) => {
               console.log('from login', response);
-              const { user, token } = response.data;
+              const { token } = response.data;
               localStorage.setItem('token', token);
-              setUser(user);
+              // setUser(user);
               setMessage('sucess');
               isSubmitting = false;
               console.log('from login', token);

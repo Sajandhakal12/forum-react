@@ -14,8 +14,6 @@ export default function BrowseCategories() {
     let data = response.data.result;
 
     setCategories(data);
-    console.log(categories);
-    // console.log(response.data.result);
   };
 
   return (
@@ -25,14 +23,27 @@ export default function BrowseCategories() {
       <ul>
         {categories &&
           categories.map((category, index) => (
-            <li key={index} className="list-group mb-1">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => history.push('/category/' + category.id)}
-              >
-                {category.title} <span className="badge badge-light">2</span>
-              </button>
+            <li
+              key={index}
+              className="list-group mb-1"
+              onClick={() => history.push('/category/' + category.id)}
+            >
+              <div className="card mb-3" style={{ borderRadius: '20px' }}>
+                <div className="row no-gutters">
+                  <div className="col-md-4">
+                    <div style={{ textAlign: 'center', margin: '15px' }}>
+                      <i
+                        className="fa fa-graduation-cap"
+                        style={{ fontSize: '48px', display: 'inline-block' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="card-body">
+                    <h5 className="card-title">{category.title}</h5>
+                  </div>
+                </div>
+              </div>
             </li>
           ))}
       </ul>

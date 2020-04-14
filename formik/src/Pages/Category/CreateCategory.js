@@ -9,17 +9,12 @@ const CreateCategory = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    // console.log(create_UUID());
     const data = {
       id: create_UUID(),
       title,
     };
-    // console.log(data.id);
 
-    const response = await axios.post(
-      'http://localhost:5000/api/category/create',
-      data
-    );
+    await axios.post('http://localhost:5000/api/category/create', data);
     history.push('/category/' + data.id);
   };
 

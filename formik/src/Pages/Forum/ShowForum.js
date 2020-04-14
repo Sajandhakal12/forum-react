@@ -38,7 +38,7 @@ export default function ShowForum() {
               <button onClick={() => history.push(`/thread/${thread.id}`)}>
                 <h5>{thread.title}</h5>
               </button>
-              {thread.createdAt}
+              {Date(thread.createdAt).toString()}
             </li>
           ))}
       </ul>

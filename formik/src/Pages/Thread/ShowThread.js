@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { create_UUID } from '../../Component/uuid';
 
@@ -9,8 +9,8 @@ export default function ShowThread() {
   const { user } = useContext(AuthContext);
   const [thread, setThread] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(false);
+  // const [page, setPage] = useState(1);
+  //const [hasMore, setHasMore] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [replyContent, setReplyContent] = useState('');
 
@@ -53,27 +53,31 @@ export default function ShowThread() {
     setPosts([...posts, response.data.result]);
   };
 
-  const history = useHistory();
+  //const history = useHistory();
+
   return (
     <div style={{ padding: '2rem' }}>
-      {thread && <h1>{thread.title}</h1>}
+      <div class="list-group-item list-group-item-action flex-column align-items-start  ">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{thread && thread.title}</h5>
+          <small>3 days ago</small>
+        </div>
+        <p class="mb-1">{thread && thread.content}</p>
+      </div>
 
-      {thread && <p>{thread.content}</p>}
       {/* {thread && <h1>{thread}</h1>} */}
       <h5>comments</h5>
       <ul>
         {posts &&
           posts.map((post, index) => (
             <li key={index}>
-              <h6>{post.content}</h6> {post.createdAt}
+              <h6>{post.content}</h6> {Date(post.createdAt).toString()}
             </li>
           ))}
       </ul>
 
       <button
-        variant="contained"
-        color="primary"
-        disabled={!hasMore}
+        //disabled={!hasMore}
         style={{ marginRight: '1rem' }}
         onClick={getPosts}
       >
